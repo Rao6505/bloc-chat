@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import * as firebase from 'firebase';
+import RoomList from './components/RoomList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+var config = {
+  apiKey: "AIzaSyA63vl9X4DyG8YKZIz22pRMj_EbFRkEjng",
+  authDomain: "bloc-chat-82765.firebaseapp.com",
+  databaseURL: "https://bloc-chat-82765.firebaseio.com",
+  projectId: "bloc-chat-82765",
+  storageBucket: "bloc-chat-82765.appspot.com",
+  messagingSenderId: "610869447632",
+  appId: "1:610869447632:web:ffc14500f185efba"
+};
+firebase.initializeApp(config);
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rooms: []
+    };
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1 className="App-title">Bloc Chat</h1>
+        <main>
+           <RoomList firebase={firebase} />
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
