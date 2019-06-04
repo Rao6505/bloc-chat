@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
-
 
 var config = {
   apiKey: "AIzaSyA63vl9X4DyG8YKZIz22pRMj_EbFRkEjng",
@@ -16,13 +15,14 @@ var config = {
 firebase.initializeApp(config);
 
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: []
+      rooms: [],
     };
   }
+
 
   render() {
     return (
