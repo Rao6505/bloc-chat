@@ -18,7 +18,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: []
+      rooms: [],
+      newRoomName: ''
     };
   }
 
@@ -27,8 +28,8 @@ class App extends Component {
       <div className="App">
         <h1 className="App-title">Bloc Chat</h1>
         <main>
-        <h3>Rooms</h3>
-           <RoomList firebase={firebase} />
+          <h3>Rooms</h3>
+          <RoomList firebase={firebase} />
         </main>
       </div>
     );
