@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-import './App.css'
-import RoomList from './components/RoomList'
-import * as firebase from 'firebase'
+import React, { Component } from 'react';
+import './App.css';
+import * as firebase from 'firebase';
+import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
-var config = {
+
+var firebaseConfig = {
   apiKey: "AIzaSyA63vl9X4DyG8YKZIz22pRMj_EbFRkEjng",
   authDomain: "bloc-chat-82765.firebaseapp.com",
   databaseURL: "https://bloc-chat-82765.firebaseio.com",
@@ -12,25 +14,29 @@ var config = {
   messagingSenderId: "610869447632",
   appId: "1:610869447632:web:ffc14500f185efba"
 };
-firebase.initializeApp(config);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rooms: [],
-      newRoomName: ''
+      activeRoom: null,
     };
+  }
+
+  setActiveRoom(room) {
+    this.setState({ activeRoom: room });
   }
 
   render() {
     return (
       <div className="App">
-        <h1 className="App-title">Bloc Chat</h1>
-        <main>
-          <h3>Rooms</h3>
-          <RoomList firebase={firebase} />
-        </main>
+        <aside id="sidebar">
+          <h1 className="App-title">Bloc Chat</h1>
+          <RoomList firebase={firebase} activeRoom={this.state.activeRoom} setActiveRoom={this.setActiveRoom.bind(this)} />
+        </aside>
+        <MessageList firebase={firebase} activeRoom={this.state.activeRoom} />
       </div>
     );
   }
