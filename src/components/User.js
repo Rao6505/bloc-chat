@@ -4,14 +4,14 @@ import '.././styles/User.css';
 class User extends Component {
 
   componentDidMount() {
-    this.props.firebase.auth().onAuthStateChanged( user => {
+    this.props.firebase.auth().onAuthStateChanged(user => {
       this.props.setUser(user);
     });
   }
 
   signIn() {
     const provider = new this.props.firebase.auth.GoogleAuthProvider();
-    this.props.firebase.auth().signInWithPopup( provider );
+    this.props.firebase.auth().signInWithPopup(provider);
   }
 
   signOut() {
@@ -21,9 +21,9 @@ class User extends Component {
   render() {
     return (
       <section className="user-display">
-        <div className="user-display-name">{ this.props.user ? this.props.user.displayName : ' ' }</div>
-        <button className="sign-in-out" onClick={ this.props.user ? this.signOut.bind(this) : this.signIn.bind(this) }>
-          <span>Sign { this.props.user ? 'out' : 'in' }</span>
+        <div className="user-display-name">{this.props.user ? this.props.user.displayName : ' '}</div>
+        <button className="sign-in-out" onClick={this.props.user ? this.signOut.bind(this) : this.signIn.bind(this)}>
+          <span>Sign {this.props.user ? 'out' : 'in'}</span>
         </button>
       </section>
     );
